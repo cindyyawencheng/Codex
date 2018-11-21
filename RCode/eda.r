@@ -79,7 +79,6 @@ split(participAgg$year, participAgg$event_short)
 # find matches for which there is a direct year-committee match
 directMatch = merge(participAgg, std, by = c('event_short', 'year'), all = FALSE)
 
-
 # find standards for which there is no direct year-committee match with the participants data
 stdMissMatch = std[which(std$id %in% setdiff(std$id, directMatch$id)),]
 
@@ -88,8 +87,6 @@ stdMissMatch = std[which(std$id %in% setdiff(std$id, directMatch$id)),]
 stdMissMatch$year = stdMissMatch$year-1
 ByOneMatch = merge(participAgg, stdMissMatch, by = c('event_short', 'year'), all = FALSE)
 stdMatch = stdMissMatch[which(stdMissMatch$id %in% ByOneMatch$id),]
-
- 
 
 # combine ....
 std2 = rbind(std[which(std$id %in% directMatch$id),],  # standards that have a direct match, 
@@ -143,8 +140,6 @@ std2[which(std2$event_short == 'TFAF' & std2$year_enact == 2008 ), 'year' ] = 20
 
 
 dataAgg = merge(participAgg, std2, by = c('event_short', 'year'), all.x = TRUE)
- 
- 
 
 # --------------------
 ## Check
