@@ -1,0 +1,251 @@
+---
+title: "Preliminary Results of Codex Analysis"
+output:
+  html_document:
+    toc: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    smart: false
+
+---
+
+Please see the below for some preliminary results from the Codex Analysis.
+ 
+Some Notes:
+
+* With regards to the datasets ...
+  + "Complete Dataset"" refers to the entire dataset
+  + "Only Active Committees Dataset" restricts the dataset to only standards attached to committees that have never been abolished
+  + I also tried to estimate the same models for a "Only Inactive Committees Dataset" which restricts the dataset to only standards attached to committees that have been abolished, but so far it looks like the models are not estimable (i.e. get an error)
+
+
+
+* With regards to the variable names...
+  + Variable names designated with an '(s)' denote the selection part of the equation (whether a standard was adopted or not)
+  + Variable names designated with an '(o)' denote the outcome part of the equation (whether a standard that was adopted was subsequently amended, revised, or both)
+ 
+ 
+ 
+* With regards to the models/interpreting the models  ...
+  + Analyses with 'All committees' include dummy variables for the specific committee but are not shown below for reasons of space/legibility of the tables
+  + The selection part of the regression should return the same parameter estimates across a given dataset but the outcome part of the regression will change depending on the dependent variable in a given dataset
+  + The models are not estimable when using all the possible categories under income group or interest group measures of participation for the 'CAC committee only' analyses; will explore whether restricting the categories changes this in future work
+
+
+Some things to think about that we could do in future analyses include
+
+* Interaction term between WTO Dummy and measure of participation
+
+ 
+``` {r include = FALSE}
+
+if(Sys.info()['user'] == 'cindycheng'){
+	source('/Users/cindycheng/Documents/Papers/Codex/RCode/setup.R')}
+
+# load data
+load(paste0(pathResults, '/prelimResults.rda'))
+
+all_individual_amended = extractTables('All', 'individualCommittees', 'amended')
+all_individual_revised = extractTables('All', 'individualCommittees', 'revised')
+all_individual_both = extractTables('All', 'individualCommittees', 'both')
+
+all_cac_amended = extractTables('All', 'cac', 'amended')
+all_cac_revised = extractTables('All', 'cac', 'revised')
+all_cac_both = extractTables('All', 'cac', 'both')
+
+
+active_individual_amended = extractTables('ActiveOnly', 'individualCommittees', 'amended')
+active_individual_revised = extractTables('ActiveOnly', 'individualCommittees', 'revised')
+active_individual_both = extractTables('ActiveOnly', 'individualCommittees', 'both')
+
+active_cac_amended = extractTables('ActiveOnly', 'cac', 'amended')
+active_cac_revised = extractTables('ActiveOnly', 'cac', 'revised')
+active_cac_both = extractTables('ActiveOnly', 'cac', 'both')
+
+
+inactive_individual_amended = extractTables('inActiveOnly', 'individualCommittees', 'amended')
+inactive_individual_revised = extractTables('inActiveOnly', 'individualCommittees', 'revised')
+inactive_individual_both = extractTables('inActiveOnly', 'individualCommittees', 'both')
+
+inactive_cac_amended = extractTables('inActiveOnly', 'cac', 'amended')
+inactive_cac_revised = extractTables('inActiveOnly', 'cac', 'revised')
+inactive_cac_both = extractTables('inActiveOnly', 'cac', 'both')
+
+```
+ 
+ 
+# Heckman Selection Model 
+
+In the following heckman selection models, the selection equation is whether a standard has been adopted or not and the outcome equation is whether it has been amended, revised, or both
+
+
+## Complete Dataset {.tabset}
+
+### All committees {.tabset  .tabset-fade .tabset-pills}
+ 
+#### Amended
+ 
+``` {r results = 'asis', echo=FALSE}
+htmlreg(all_individual_amended,  
+        star.symbol = "\\*", 
+        center = TRUE, 
+        doctype = FALSE, 
+        html.tag = FALSE, 
+        custom.coef.map = coef_map_list,
+        custom.model.names = c(paste0('Model ', 1:8))
+        )
+```
+ 
+#### Revised
+
+``` {r results = 'asis', echo=FALSE}
+htmlreg(all_individual_revised,  
+        star.symbol = "\\*", 
+        center = TRUE, 
+        doctype = FALSE, 
+        html.tag = FALSE, 
+        custom.coef.map = coef_map_list,
+        custom.model.names = c(paste0('Model ', 1:8))
+        )
+```
+
+#### Both Amended or Revised
+``` {r results = 'asis', echo=FALSE}
+htmlreg(all_individual_both,  
+        star.symbol = "\\*", 
+        center = TRUE, 
+        doctype = FALSE, 
+        html.tag = FALSE, 
+        custom.coef.map = coef_map_list,
+        custom.model.names = c(paste0('Model ', 1:8))
+        )
+```
+
+### CAC committee only {.tabset  .tabset-fade .tabset-pills}
+
+#### Amended
+ 
+``` {r results = 'asis', echo=FALSE}
+htmlreg(all_cac_amended[1:6],  
+        star.symbol = "\\*", 
+        center = TRUE, 
+        doctype = FALSE, 
+        html.tag = FALSE, 
+        custom.coef.map = coef_map_list_cac,
+        custom.model.names = c(paste0('Model ', 1:6))
+        )
+```
+ 
+#### Revised
+
+``` {r results = 'asis', echo=FALSE}
+htmlreg(all_cac_revised[1:6],  
+        star.symbol = "\\*", 
+        center = TRUE, 
+        doctype = FALSE, 
+        html.tag = FALSE, 
+        custom.coef.map = coef_map_list_cac,
+        custom.model.names = c(paste0('Model ', 1:6))
+        )
+```
+
+#### Both Amended or Revised
+
+``` {r results = 'asis', echo=FALSE}
+htmlreg(all_cac_both[1:6],  
+        star.symbol = "\\*", 
+        center = TRUE, 
+        doctype = FALSE, 
+        html.tag = FALSE, 
+        custom.coef.map = coef_map_list_cac,
+        custom.model.names = c(paste0('Model ', 1:6))
+        )
+```
+
+
+## Only Active Committees Dataset {.tabset}
+
+### All committees {.tabset  .tabset-fade .tabset-pills}
+ 
+#### Amended
+ 
+``` {r results = 'asis', echo=FALSE}
+htmlreg(active_individual_amended,  
+        star.symbol = "\\*", 
+        center = TRUE, 
+        doctype = FALSE, 
+        html.tag = FALSE, 
+        custom.coef.map = coef_map_list,
+        custom.model.names = c(paste0('Model ', 1:8))
+        )
+```
+ 
+#### Revised
+
+``` {r results = 'asis', echo=FALSE}
+htmlreg(active_individual_revised,  
+        star.symbol = "\\*", 
+        center = TRUE, 
+        doctype = FALSE, 
+        html.tag = FALSE, 
+        custom.coef.map = coef_map_list,
+        custom.model.names = c(paste0('Model ', 1:8))
+        )
+```
+
+#### Both Amended or Revised
+``` {r results = 'asis', echo=FALSE}
+htmlreg(active_individual_both,  
+        star.symbol = "\\*", 
+        center = TRUE, 
+        doctype = FALSE, 
+        html.tag = FALSE, 
+        custom.coef.map = coef_map_list,
+        custom.model.names = c(paste0('Model ', 1:8))
+        )
+```
+
+### CAC committee only {.tabset  .tabset-fade .tabset-pills}
+#### Amended
+ 
+``` {r results = 'asis', echo=FALSE}
+htmlreg(active_cac_amended[1:6],  
+        star.symbol = "\\*", 
+        center = TRUE, 
+        doctype = FALSE, 
+        html.tag = FALSE, 
+        custom.coef.map = coef_map_list_cac,
+        custom.model.names = c(paste0('Model ', 1:6))
+        )
+```
+ 
+#### Revised
+
+``` {r results = 'asis', echo=FALSE}
+htmlreg(active_cac_revised[1:6],  
+        star.symbol = "\\*", 
+        center = TRUE, 
+        doctype = FALSE, 
+        html.tag = FALSE, 
+        custom.coef.map = coef_map_list_cac,
+        custom.model.names = c(paste0('Model ', 1:6))
+        )
+```
+
+#### Both Amended or Revised
+
+``` {r results = 'asis', echo=FALSE}
+htmlreg(active_cac_both[1:6],  
+        star.symbol = "\\*", 
+        center = TRUE, 
+        doctype = FALSE, 
+        html.tag = FALSE, 
+        custom.coef.map = coef_map_list_cac,
+        custom.model.names = c(paste0('Model ', 1:6))
+        )
+```
+
+
+
+
