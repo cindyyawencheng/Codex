@@ -1,5 +1,6 @@
 if(Sys.info()['user'] == 'cindycheng'){
-	pathData = '/Users/cindycheng/Dropbox/Documents/Papers/Codex'
+	pathMain = '/Users/cindycheng/Dropbox/Documents/Papers/Codex'
+	pathData = '/Users/cindycheng/Dropbox/Documents/Papers/Codex/Data'
 	pathCode = '/Users/cindycheng/Documents/Papers/Codex/RCode'
 	pathResults = '/Users/cindycheng/Documents/Papers/Codex/Results'
 }
@@ -15,8 +16,42 @@ loadPkg=function(toLoad){
 }
 
 # load packages
-packages = c('readstata13', 'sampleSelection', 'dplyr', 'magrittr', 'texreg', 'fastDummies')
+packages = c('readstata13', 
+             'sampleSelection',
+             'dplyr',
+             'tidyr',
+             'magrittr',
+             'texreg',
+              'fastDummies', 
+             # 'RWeka', 
+              'tm',
+             'stringr',
+             'tidystringdist',
+             'sjPlot'
+             )
 loadPkg(packages)
+
+
+
+
+#####################################
+
+#####################################
+# allows you to extract multiple words/ngrams, i.e. 'Big Apple', instead of only single ones/unigrams
+BigramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 1, max = 5))
+
+
+VerbgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 1, max = 10))
+
+
+#####################################
+
+#####################################
+# function which allos you to do gsub on corpus 
+
+toSpace <- content_transformer(function(x, pattern, sub) gsub(pattern,  sub, x)) # http://stackoverflow.com/questions/14281282/how-to-write-custom-removepunctuation-function-to-better-deal-with-unicode-cha
+
+
 
 # --------------------
 # create log of variables

@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: chengKlotz_codexParticipation.aux
+The style file: chicago.bst
+Database file #1: Paper/codex.bib.bib
+Warning--can't use both author and editor fields in victor:1997
+You've used 5 entries,
+            2861 wiz_defined-function locations,
+            652 strings with 6057 characters,
+and the built_in function-call counts, 3360 in all, are:
+= -- 290
+> -- 191
+< -- 2
++ -- 52
+- -- 68
+* -- 290
+:= -- 600
+add.period$ -- 15
+call.type$ -- 5
+change.case$ -- 32
+chr.to.int$ -- 5
+cite$ -- 6
+duplicate$ -- 101
+empty$ -- 233
+format.name$ -- 76
+if$ -- 628
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 6
+newline$ -- 28
+num.names$ -- 50
+pop$ -- 26
+preamble$ -- 1
+purify$ -- 63
+quote$ -- 0
+skip$ -- 100
+stack$ -- 0
+substring$ -- 234
+swap$ -- 40
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 90
+warning$ -- 1
+while$ -- 56
+width$ -- 0
+write$ -- 68
+(There was 1 warning)

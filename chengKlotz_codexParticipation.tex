@@ -1,0 +1,284 @@
+\documentclass[12pt]{article} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% PREAMBLE %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% -------------------- defaults -------------------- %
+% load lots o' packages
+
+% approx iid
+\newcommand\simiid{\stackrel{\mathclap{\normalfont\mbox{\tiny{iid}}}}{\sim}}
+\usepackage{natbib}
+\usepackage{titlecaps}
+\Addlcwords{a about above after again against all am an and any are aren't as at be because been before being below between both but by can't cannot could couldn't did didn't do does doesn't doing don't down during each few for from further had hadn't has hasn't have haven't having he he'd he'll he's her here here's hers herself him himself his how how's i i'd i'll i'm i've if in into is isn't it it's its itself let's me more most mustn't my myself no nor not of off on once only or other ought our ours ourselves out over own same shan't she she'd she'll she's should shouldn't so some such than that that's the their theirs them themselves then there there's these they they'd they'll they're they've this those through to too under until up very was wasn't we we'd we'll we're we've were weren't what what's when when's where where's which while who who's whom why why's with won't would wouldn't you you'd you'll you're you've your yours yourself yourselves}
+
+% Fonts
+% at some point figure out bolding ...
+\usepackage[default,osfigures,scale=0.95]{opensans}
+%\usepackage[sfdefault,scaled=.85]{FiraSans}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[varqu,varl]{zi4}% inconsolata typewriter
+\usepackage{amsmath,amsthm}
+\usepackage[cmintegrals]{newtxsf}
+\usepackage[T1]{fontenc}
+\usepackage{ae}
+
+% layout control
+\usepackage[paper=a4paper,left=25mm,right=25mm,top=20mm,bottom=25mm]{geometry}
+\usepackage[onehalfspacing]{setspace}
+\setlength{\parskip}{.5em}
+\usepackage{rotating}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{parallel}
+\usepackage{parcolumns}
+\usepackage{pdflscape}
+% math typesetting
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+% tables
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{etoolbox}
+\usepackage{booktabs}
+
+\usepackage[%
+decimalsymbol=.,
+digitsep=fullstop
+]{siunitx}
+
+% to adapt caption style
+\usepackage[font={small},labelfont=bf]{caption}
+
+% footnotes at bottom
+\usepackage[bottom]{footmisc}
+
+% to change enumeration symbols begin{enumerate}[(a)]
+\usepackage{enumerate}
+
+% to make enumerations and itemizations within paragraphs or
+% lines. f.i. begin{inparaenum} for (a) is (b) and (c)
+\usepackage{paralist}
+
+% to colorize links in document. See color specification below
+\usepackage[x11names]{xcolor}
+
+% for multiple references and insertion of the word "figure" or "table"
+% \usepackage{cleveref}
+
+% load the hyper-references package and set document info
+\usepackage[pdftex]{hyperref}
+
+% graphics stuff
+\usepackage{subfig}
+\usepackage{graphicx}
+\usepackage[space]{grffile} % allows us to specify directories that have spaces
+\usepackage[section]{placeins} % prevents floats from moving past a \FloatBarrier or section
+\usepackage{tikz}
+\usepackage{caption}
+
+% \usepackage{pgfplots}
+
+% define clickable links and their colors
+\hypersetup{
+	unicode=false,          % non-Latin characters in Acrobat's bookmarks
+	pdftoolbar=true,        % show Acrobat's toolbar?
+	pdfmenubar=true,        % show Acrobat's menu?
+	pdffitwindow=false,     % window fit to page when opened
+	pdfstartview={FitH},    % fits the width of the page to the window
+	pdfnewwindow=true,%
+	pdfauthor={Cindy Cheng and Shahryar Minhas},%
+	pdftitle={Aid something},%
+	colorlinks,%
+	citecolor=black,%
+	filecolor=black,%
+	linkcolor=black,%
+	urlcolor=RoyalBlue4%
+	}
+
+% Including External Code
+\usepackage{verbatim}
+\usepackage{listings}
+\lstset{
+	language=R,
+	basicstyle=\scriptsize\ttfamily,
+	commentstyle=\ttfamily\color{gray},
+	numbers=left,
+	numberstyle=\ttfamily\color{gray}\footnotesize,
+	stepnumber=1,
+	numbersep=5pt,
+	backgroundcolor=\color{white},
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	frame=single,
+	tabsize=2,
+	captionpos=b,
+	breaklines=true,
+	breakatwhitespace=false,
+	title=\lstname,
+	escapeinside={},
+	keywordstyle={},
+	morekeywords={}
+	}
+
+
+% -------------------------------------------------- %
+
+
+% -------------------- title -------------------- %
+
+\title{Do Too Many Cooks Spoil the Broth? The Effect of Increasing Participation on the Codex Food Standard-Making Process
+\\ Preliminary draft: Please do not cite
+}
+\author{	Cindy Cheng \\
+	\texttt{cindy.cheng@hfp.tum.de}
+	\and
+	Sebastian Klotz \\
+	\texttt{Sebastian.Klotz@wti.org}
+}
+\date{\today}
+
+
+% \setlength{\headheight}{15pt}
+% \setlength{\headsep}{20pt}
+% \pagestyle{fancyplain}
+ 
+% \fancyhf{}
+ 
+% \lhead{\fancyplain{}{}}
+% \chead{\fancyplain{}{}}
+% \rhead{\fancyplain{}{}}
+% \rfoot{\fancyplain{}{}}
+
+% ----------------------------------------------- %
+
+
+% -------------------- customizations -------------------- %
+
+%\graphicspath{{~/Users/cindycheng/Dropbox/ForeignAid/graphics/}}
+\graphicspath{{graphics/}}
+\makeatletter
+\def\input@path{{graphics/}}
+ \makeatother
+
+% \makeatletter
+%\def\input@path{{/Users/janus829/Dropbox/Research/ForeignAid/Graphics/}}
+% \makeatother
+%\graphicspath{{/Users/janus829/Dropbox/Research/ForeignAid/Graphics/}}
+
+% easy commands for number propers
+\newcommand{\first}{$1^{\text{st}}$}
+\newcommand{\second}{$2^{\text{nd}}$}
+\newcommand{\third}{$3^{\text{rd}}$}
+\newcommand{\nth}[1]{${#1}^{\text{th}}$}
+
+% square bracket matrices
+\let\bbordermatrix\bordermatrix
+\patchcmd{\bbordermatrix}{8.75}{4.75}{}{}
+\patchcmd{\bbordermatrix}{\left(}{\left[}{}{}
+\patchcmd{\bbordermatrix}{\right)}{\right]}{}{}
+
+% Extra functions
+\newcommand{\bl}[1]{{\mathbf #1}}
+\newcommand{\bs}[1]{{\boldsymbol #1}}
+\newcommand{\etr}{{\rm etr}}
+\newcommand{\tr}{\text{tr}}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
+
+\newcommand{\Exp}[1]{{\text{E}}[ \ensuremath{ #1 } ]  }
+\newcommand{\Var}[1]{{\text{Var}}[ \ensuremath{ #1 } ]  }
+\newcommand{\Cov}[1]{{\text{Cov}}[ \ensuremath{ #1 } ]  }
+\newcommand{\Cor}[1]{{\text{Cor}}[ \ensuremath{ #1 } ]  }
+
+
+%% Break urls at hyphens
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+%% Define new column type so that theme model results fit in a column
+\usepackage{array}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+% Add some colors
+\definecolor{green1}{RGB}{229,245,224}
+\definecolor{green2}{RGB}{161,217,155}
+\definecolor{green3}{RGB}{49,163,84}
+
+\definecolor{blue1}{RGB}{222,235,247}
+\definecolor{blue2}{RGB}{158,202,225}
+\definecolor{blue3}{RGB}{49,130,189}
+
+% easy command for boldface math symbols
+\newcommand{\mbs}[1]{\boldsymbol{#1}}
+
+% define bibliography style
+
+
+
+
+% -------------------------------------------------------- %
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% DOCUMENT %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\doublespacing 
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+\singlespacing{
+
+
+}
+\end{abstract}
+
+\newpage 
+
+%%%%%%%% INTRO %%%%%%%%
+\input{Paper/1_codexIntro}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%% Theory %%%%%
+\input{Paper/2_codexTheory}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%% Description of Codex %%%%%
+\input{Paper/3_codexDesc}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% Data %%%%%
+\input{Paper/4_codexData}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%% Empirics %%%%%
+\input{Paper/5_codexEmpirics}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% Conclusion %%%%%
+\input{Paper/6_codexConcl}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newpage
+\bibliographystyle{chicago}
+\bibliography{Paper/codex.bib}
+
+ 
+
+\end{document} 
